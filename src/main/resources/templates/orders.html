@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Orders</title>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/bootstrap1.css" rel="stylesheet"/>
+    <link href="css/bootstrap2.css" rel="stylesheet"/>
+</head>
+<body>
+    <div th:replace="fragments/navigation :: navigation">
+    </div>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h3>Orders</h3>
+                </div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <!--checkbox-->
+                        <label>Choose food !</label>
+                        <div class="checkbox" name="product" th:each="product : ${products}">
+                            <label><input type="checkbox" th:field="*{products}"
+                                          th:value="${product.name}"
+                                          th:text="${product.name}"/></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Firstname :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control"
+                                   name="firstname" id="customer_first_name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Lastname :</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control"
+                                   name="lastname" id="customer_last_name"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <button class="btn btn-default" id="btn_submit">
+                            <span></span>
+                            Add New Order !
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="page-header">
+      <div class="col-lg-8 col-lg-offset-2">
+      <h3>Data Orderan</h3>
+      <br/>
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>ID Order</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Total</th>
+            <th>Opsi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="order : ${orders}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.customer.firstname +''+order.customer.lastname}"></td>
+            <td>
+              <table>
+                <tr th:each="product : ${order.products}">
+                    <td th:text="${product.name}"></td>
+                </tr>
+              </table>
+            </td>
+            <td th:text="${order.totalprice}"></td>
+            <td th:id="${order.orderId}">
+              <button class="btn btn-danger delete-order">
+                Clear Order
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>ID Order</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Total</th>
+            <th>Opsi</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap1.js"></script>
+    <script type="text/javascript" src="js/bootstrap2.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

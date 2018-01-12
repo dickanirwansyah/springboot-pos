@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Product</title>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/bootstrap1.css" rel="stylesheet"/>
+    <link href="css/bootstrap2.css" rel="stylesheet"/>
+</head>
+<body>
+    <div th:replace="fragments/navigation :: navigation"></div>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h3>Products</h3>
+                </div>
+                <table class="table table-hover table-stiped">
+                    <thead>
+                        <tr>
+                            <th>Name Product</th>
+                            <th>Unit Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.unitprice}"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Name Product</th>
+                            <th>Unit Price</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/bootstrap1.js"></script>
+<script type="text/javascript" src="js/bootstrap2.js"></script>
+</body>
+</html>
